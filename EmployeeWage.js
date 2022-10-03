@@ -10,7 +10,6 @@ if (empCheck == isFullTime) {
   console.log("UC1-> Employee is Absent");
 }
 
-//UC2
 function CheckFullPartTime() {
     return Math.floor((Math.random() * 10) % 3);
   }
@@ -19,28 +18,22 @@ function CheckFullPartTime() {
   const isPartTime = 2;
   const wagePerHour = 20;
   let empHrs;
-  let dailyWage;
+  let dailyWage=0;
   
+  function GetWorkHour(){
   switch (empCheck) {
     case isFullTime:
       empHrs = 8;
-      dailyWage = wagePerHour * empHrs;
-  
-      console.log(
-        "UC2-> Employee is present for full time and his salary is: " + dailyWage);
       break;
-  
     case isPartTime:
       empHrs = 4;
-      dailyWage = wagePerHour * empHrs;
-  
-      console.log(
-        "UC2-> Employee is present for Part time and his salary is: " + dailyWage);
       break;
   
     default:
       empHrs = 0;
-      dailyWage = wagePerHour * empHrs;
-      console.log("UC2-> Employee is absent and his salary is: " + dailyWage);
       break;
   }
+  return empHrs;
+}
+dailyWage = GetWorkHour()*wagePerHour
+console.log("UC3-> DailyWage is :",dailyWage)
