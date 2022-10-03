@@ -8,6 +8,7 @@ const isFullTime = 1;
 let EmpWage=0;
 let empCheck ;
 let WorkHours=0;
+let TotalWokingHrs=160;
 function CheckFullPartTime()  //Function to check employee present for full time or Part time or absent
 
 {
@@ -32,8 +33,8 @@ function GetWorkHour() //// UC3-> Function to get work houe
   }
   return empHrs;
 }
-
-while (days < TotalWokingDays)
+let a = 0;
+while (days < TotalWokingDays && WorkHours < TotalWokingHrs )
 {  
     empCheck= CheckFullPartTime();
     WorkHours+=GetWorkHour()
@@ -41,3 +42,4 @@ while (days < TotalWokingDays)
 }
 EmpWage = WorkHours*wagePerHour
 console.log(`UC4-> Employee wage for ${days} and ${WorkHours} working hours is ${EmpWage}`);
+console.log(`UC5- Total working days: ${days}, Total working hours: ${WorkHours} and total wage= ${EmpWage}`);
