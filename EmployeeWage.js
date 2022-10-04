@@ -11,6 +11,7 @@ let WorkHours=0;
 let TotalWokingHrs=160;
 let dailyWage  = [];
 let dailyWageMap = new Map();
+let dailyHourMap = new Map();
 function CheckFullPartTime()  //Function to check employee present for full time or Part time or absent
 
 {
@@ -44,6 +45,7 @@ while (days < TotalWokingDays && WorkHours < TotalWokingHrs )
     dailyWage.push(hours * wagePerHour);
     days++;
     dailyWageMap.set(days, hours * wagePerHour);
+    dailyHourMap.set(days, hours)
 }
 EmpWage = WorkHours*wagePerHour
 console.log(`UC4-> Employee wage for ${days} and ${WorkHours} working hours is ${EmpWage}`);
@@ -99,12 +101,41 @@ function GetTotalWorkingdays() {
 }
 dailyWage.filter((wage) => wage > 0).forEach(GetTotalWorkingdays);
 console.log("UC7-G Total number of working days= ", workingdays);
-console.log("UC8->  Daily wage by Map");
+console.log("UC8A->  Daily wage by Map");
 for (let [key, value] of dailyWageMap){
   console.log("Day: "+key+", Wage is: "+value);
 }
 totalWage=0;
 dailyWageMap.forEach(value=> totalWage+=value)
-console.log("UC8->  Total wage by Map is: "+totalWage);
+console.log("UC8B->  Total wage by Map is: "+totalWage);
+
+WorkHours=0;
+console.log("UC9A->  Daily hours by Map");
+for (let [key, value] of dailyHourMap){
+  console.log("Day: "+key+", hours worked is: "+value);
+}
+dailyHourMap.forEach(value=> WorkHours+=value)
+console.log("UC9A->  Total hours by Map is: "+WorkHours);
+
+
+process.stdout.write("Uc9B-> Part working days are: ")
+dailyHourMap.forEach((values,keys)=>
+{if(values == 4 )
+  process.stdout.write(keys +" ")
+})
+process.stdout.write("\nfull working days are: ")
+dailyHourMap.forEach((values,keys)=>
+{if(values == 8)
+  process.stdout.write(keys +" ")
+})
+process.stdout.write("\nNo working days are: ")
+dailyHourMap.forEach((values,keys)=>
+{if(values == 0)
+  process.stdout.write(keys +" ")
+})
+
+
+
+
 
 
