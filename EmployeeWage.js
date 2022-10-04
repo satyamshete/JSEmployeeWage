@@ -12,6 +12,7 @@ let TotalWokingHrs=160;
 let dailyWage  = [];
 let dailyWageMap = new Map();
 let dailyHourMap = new Map();
+let empDailyObjArray = new Array();
 function CheckFullPartTime()  //Function to check employee present for full time or Part time or absent
 
 {
@@ -46,6 +47,21 @@ while (days < TotalWokingDays && WorkHours < TotalWokingHrs )
     days++;
     dailyWageMap.set(days, hours * wagePerHour);
     dailyHourMap.set(days, hours)
+    empDailyObjArray.push({
+      day: days,
+      empHrs: hours,
+      dailyWage: hours * wagePerHour,
+      toString() {
+        return (
+          "\nDay:" +
+          this.day +
+          " Daily Hrs:" +
+          this.empHrs +
+          " Daily Wage: " +
+          this.dailyWage
+        );
+      },
+    });
 }
 EmpWage = WorkHours*wagePerHour
 console.log(`UC4-> Employee wage for ${days} and ${WorkHours} working hours is ${EmpWage}`);
@@ -133,7 +149,10 @@ dailyHourMap.forEach((values,keys)=>
 {if(values == 0)
   process.stdout.write(keys +" ")
 })
-
+console.log(
+  "UC-10 Store day,hrs,wage in a object: ",
+  empDailyObjArray.toString()
+);
 
 
 
